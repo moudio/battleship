@@ -1,0 +1,23 @@
+{
+  "name": "battleship_js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MouhaDiouf/Battleship_JS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MouhaDiouf/Battleship_JS/issues"
+  },
+  "homepage": "https://github.com/MouhaDiouf/Battleship_JS#readme",
+  "devDependencies": {
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}
