@@ -1,14 +1,21 @@
- function Ship(length){
+ function Ship(length, coord_x = null , coord_y = null, ship_direction = 'horizontal'){
+
   return {
-  length,
-  coordonates : new Array(length).fill('not hit'),
+      length,
+      coordinates: {
+        coord_x,
+        coord_y,
+      },
+
+   places : new Array(length).fill('not hit'),
   state: 'not-sunk',
+
   hit: function(n){
-    this.coordonates[n-1] = 'hit'
+    this.places[n-1] = 'hit'
   },
 
   isSunk: function(){
-    const response = this.coordonates.every(el => el === 'hit');
+    const response = this.places.every(el => el === 'hit');
     if(response){
       this.state = 'sunk';
       return true;
@@ -17,7 +24,8 @@
     }
 
 
-  }
+  },
+
 
 }
 

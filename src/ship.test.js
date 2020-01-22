@@ -8,14 +8,14 @@ test('checks if the ship is created', ()=> {
 
 test('check for the ships coordonates', ()=> {
   const newShip = Ship(3);
-  expect(newShip.coordonates).toEqual(['not hit', 'not hit', 'not hit'])
+  expect(newShip.places).toEqual(['not hit', 'not hit', 'not hit'])
 });
 
 
 test('check if the hit function actually hits the ship', () => {
   const newShip = Ship(4);
   newShip.hit(3);
-  expect(newShip.coordonates).toEqual(['not hit', 'not hit', 'hit', 'not hit']);
+  expect(newShip.places).toEqual(['not hit', 'not hit', 'hit', 'not hit']);
 });
 
 test('check if the ship is sunk or not', () => {
