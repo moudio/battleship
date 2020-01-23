@@ -20,7 +20,7 @@
 
 
   },
-
+ship_coordonates: []
 
 }
 

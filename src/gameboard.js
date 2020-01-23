@@ -2,13 +2,13 @@ const Ship = require('./ship');
 function Gameboard(){
 
  return {
+   ships: [],
   letterToNum : {
      'A': 0,'B': 1, 'C': 2, 'D': 3,'E': 4,
      'F': 5,'G': 6, 'H': 7, 'I': 8,'J': 9
    },
    createShip: function(n, x, y){
      const newShip = Ship(n);
-     // placeShip(newShip, x, y);
    },
 
    board: (function(){
@@ -36,20 +36,30 @@ function Gameboard(){
   let max_length = y + ship.length;
 
   for(let i = y; i < max_length; i++){
-    this.board[row_x][i - 1] = 'ship';
+    this.board[row_x][i - 1] = `ship-${this.ships.length}`;
+    ship.ship_coordonates.push(`${x}${i}` );
   }
+  this.ships.push(ship);
   return  this.board;
 },
 
 receiveAttack: function(x, y){
 const row_x = this.letterToNum[x];
-let hit_coordonate = this.board[row_x][y];
-if(hit_coordonate === 'ship'){
+let hit_coordonate = this.board[row_x][y-1].split('-');
+if(hit_coordonate[0] === 'ship'){
   this.board[row_x][y - 1] = 'hit';
+  const ship_number = hit_coordonate[1];
+  const hit_ship = this.ships[ship_number];
+  const indexHit = hit_ship.ship_coordonates.indexOf(`${x}${y}`);
+  hit_ship.ship_coordonates[indexHit] = 'hit'
 } else {
-    this.board[row_x][y - 1]  = 'X'
+    this.board[row_x][y - 1]  = 'X';
 }
 
+},
+
+all_ships_sunk : function(){
+return this.ships.every(ship => ship.isSunk() === true)
 }
 
 }
