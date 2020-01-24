@@ -1,5 +1,5 @@
 const Ship = require('./ship');
-function Gameboard(){
+function Gameboard(player = null){
 
  return {
    ships: [],
@@ -9,6 +9,7 @@ function Gameboard(){
    },
    createShip: function(n, x, y){
      const newShip = Ship(n);
+     return newShip;
    },
 
    board: (function(){
@@ -58,9 +59,16 @@ if(hit_coordonate[0] === 'ship'){
 
 },
 
+attack: function(x,y){
+  if(player){
+    player.board.receiveAttack(x,y)
+  }
+},
+
 all_ships_sunk : function(){
 return this.ships.every(ship => ship.isSunk() === true)
-}
+},
+
 
 }
 }

@@ -1,0 +1,10 @@
+table td {
+  background: blue;
+   height: 40px;
+   width: 40px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
