@@ -20,6 +20,7 @@ function Computer()  {
 
     printBoard: function(){
       const div = document.createElement('div');
+      div.classList.add('board', 'computer-board')
       const container = document.querySelector('.container');
       const table = document.createElement('table');
       table.innerHTML += `<tbody> </tbody>`;
@@ -29,9 +30,9 @@ function Computer()  {
 
       const board = this.gameEnvironment.board;
         board.forEach((row, index) => {
-          const tbody = document.querySelector('tbody');
+          let allTbodies = document.querySelectorAll('tbody');
+          let tbody = allTbodies[allTbodies.length -1];
           let table_row = document.createElement('tr');
-          console.log(table_row)
 
            for(let element of row){
           const t_data = document.createElement('td');

@@ -7,7 +7,7 @@ function Gameboard(player = null){
      'A': 0,'B': 1, 'C': 2, 'D': 3,'E': 4,
      'F': 5,'G': 6, 'H': 7, 'I': 8,'J': 9
    },
-   createShip: function(n, x, y){
+   createShip: function(n){
      const newShip = Ship(n);
      return newShip;
    },
@@ -34,13 +34,23 @@ function Gameboard(player = null){
   placeShip: function(ship, x, y){
 
   const row_x = this.letterToNum[x];
-  let max_length = y + ship.length;
 
+  let max_length = y + ship.length;
+if(max_length <= 10){
   for(let i = y; i < max_length; i++){
     this.board[row_x][i - 1] = `ship-${this.ships.length}`;
     ship.ship_coordonates.push(`${x}${i}` );
   }
-  this.ships.push(ship);
+} else {
+max_length = y - ship.length;
+for(let i = y; i > max_length; i--){
+  this.board[row_x][i - 1] = `ship-${this.ships.length}`;
+  ship.ship_coordonates.push(`${x}${i}` );
+}
+
+}
+
+this.ships.push(ship);
   return  this.board;
 },
 

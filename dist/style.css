@@ -1,10 +1,29 @@
-table td {
-  background: blue;
-   height: 40px;
-   width: 40px;
+td {
+  background: grey;
+   height: 50px;
+   width: 50px;
 }
 
+.player-ship {
+  background: green;
+}
+
+.board table td:hover {
+  background: red;
+}
+
+.board {
+  margin: 10px 50px;
+
+}
+
+
 .container {
+  background: yellow;
   display: flex;
-  justify-content: space-between;
+  justify-content:center;
+  width: 80%;
+
+  margin: 100px auto ;
+
 }
