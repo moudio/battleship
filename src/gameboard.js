@@ -38,13 +38,13 @@ function Gameboard(player = null){
   let max_length = y + ship.length;
 if(max_length <= 10){
   for(let i = y; i < max_length; i++){
-    this.board[row_x][i - 1] = `ship-${this.ships.length}`;
+    this.board[row_x][i - 1] += `ship-${this.ships.length}`;
     ship.ship_coordonates.push(`${x}${i}` );
   }
 } else {
 max_length = y - ship.length;
 for(let i = y; i > max_length; i--){
-  this.board[row_x][i - 1] = `ship-${this.ships.length}`;
+  this.board[row_x][i - 1] += `ship-${this.ships.length}`;
   ship.ship_coordonates.push(`${x}${i}` );
 }
 
@@ -57,6 +57,7 @@ this.ships.push(ship);
 receiveAttack: function(x, y){
 const row_x = this.letterToNum[x];
 let hit_coordonate = this.board[row_x][y-1].split('-');
+
 if(hit_coordonate[0] === 'ship'){
   this.board[row_x][y - 1] = 'hit';
   const ship_number = hit_coordonate[1];

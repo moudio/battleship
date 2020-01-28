@@ -30,3 +30,12 @@ td {
   margin: 100px auto ;
 
 }
+
+
+.hit {
+  background: purple;
+}
+
+.miss {
+  background: black;
+}

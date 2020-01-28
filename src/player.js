@@ -26,20 +26,22 @@ function Player()  {
           let tbody = allTbodies[allTbodies.length -1];
           let table_row = document.createElement('tr');
 
+
            for(let element of row){
           const t_data = document.createElement('td');
 
           if(element.match(/ship/g)){
-            t_data.classList.add('player-ship')
+            const shipName = element.match(/ship-\d+/)[0];
+            const gridcoord = element.match(/[A-Z]\d+/)[0]
+            t_data.classList.add('player-ship', shipName, gridcoord);
           } else {
-            t_data.classList.add(element);
+             t_data.classList.add(element);
           }
           t_data.innerHTML = ``;
           table_row.appendChild(t_data);
            }
            tbody.appendChild(table_row);
         });
-
 
     },
     placeRandomShips: function(){
@@ -74,7 +76,6 @@ function Player()  {
       const row_x = player_gameboard[row_x_index];
 
       if((position + shipLength) <= 10){
-        console.log(`placing a ship at postion ${position}, with length ${shipLength}, at the letter ${letter} so the total ship length is ${position + shipLength}`)
         let real_ship_length = position + shipLength -1;
 
         while(real_ship_length > position - 1){

@@ -8,33 +8,17 @@ function Game (){
       player === player ? player : computer;
       player.gameEnvironment.receiveAttack(x,y);
     },
-
-
     start: function(){
 
-      const player = Player()
-
+      const player = Player();
       const computer = Computer();
+      player.placeRandomShips();
+      computer.placeRandomShips();
 
-
-player.placeRandomShips();
-computer.placeRandomShips();
-
-  player.printBoard();
-
-  computer.printBoard();
-
-
-
-      // computer.printBoard();
-
-      // while(player.gameEnvironment.all_ships_sunk === false && player.gameEnvironment.all_ships_sunk === false){
-      //   console.log("hello")
-      // }
-
-
-
-
+        setInterval(function(){
+          player.printBoard();
+           computer.printBoard();
+        }, 3000)
   }
 }
 };

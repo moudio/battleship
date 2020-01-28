@@ -24,7 +24,6 @@ function Computer()  {
       const container = document.querySelector('.container');
       const table = document.createElement('table');
       table.innerHTML += `<tbody> </tbody>`;
-      console.log(table)
       div.appendChild(table);
       container.appendChild(div)
 
@@ -37,8 +36,10 @@ function Computer()  {
            for(let element of row){
           const t_data = document.createElement('td');
           if(element.match(/ship/g)){
-            t_data.classList.add('computer-ship');
-          } else {
+            const shipName = element.match(/ship-\d+/)[0];
+            const gridcoord = element.match(/[A-Z]\d+/)[0]
+            t_data.classList.add('computer-ship', shipName, gridcoord);
+                 } else {
             t_data.classList.add(element);
           }
 
@@ -51,8 +52,32 @@ function Computer()  {
 
         });
 
+        document.querySelector('.computer-board').addEventListener('click', this.updateShip);
+
 
     },
+
+
+    updateShip: (e) => {
+        const target = e.target
+        if(e.target.classList.contains('computer-ship')){
+          e.target.classList.add('hit');
+          const grid_classes = target.className.split(" ");
+          console.log(grid_classes)
+          let ship_number = grid_classes.find(el => el.match(/ship-\d+/g));
+          ship_number = Number(ship_number[ship_number.length - 1])
+          const ship_coord = grid_classes.find(el => el.match(/[A-J]\d+/g));
+          console.log(ship_coord)
+          console.log([ship_number, ship_coord]);
+        } else {
+          e.target.classList.add('miss');
+        }
+    },
+
+hit_ship: function(){
+  console.log(this.gameEnvironment)
+},
+
 
     placeRandomShips: function(){
 
@@ -93,7 +118,6 @@ function Computer()  {
 
           if(row_x[real_ship_length-1].match(/ship/)){
 
-            // console.log(`the position ${letter}, ${position} with a ship of length ${shipLength} is alterady taken`)
             return false;
           }
           real_ship_length --;
