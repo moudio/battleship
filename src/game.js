@@ -13,16 +13,17 @@ function Game (){
     start: function(){
 
       const player = Player()
-      console.log(player);
 
-      // const computer = Computer();
-      // while(player.gameEnvironment.all_ships_sunk || computer.gameEnvironment.all_ships_sunk){
-      //
-      // }
+      const computer = Computer();
+
 
 player.placeRandomShips();
+computer.placeRandomShips();
 
   player.printBoard();
+
+  computer.printBoard();
+
 
 
       // computer.printBoard();

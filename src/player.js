@@ -42,7 +42,6 @@ function Player()  {
 
 
     },
-//rules: 4 * 1 ; 3* 2 ; 2 * 3 ; 1 * 4
     placeRandomShips: function(){
       const shipsLengths = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4 ];
       shipsLengths.forEach(shipsLength => {
@@ -50,7 +49,6 @@ function Player()  {
         while(!this.validPosition(shipsLength, randomPosition[0], randomPosition[1])){
           randomPosition = this.randomPlace();
         }
-            console.log(randomPosition);
 
 
         this.placeShip(shipsLength, randomPosition[0], randomPosition[1]);

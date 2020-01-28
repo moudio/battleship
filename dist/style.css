@@ -8,6 +8,9 @@ td {
   background: green;
 }
 
+.computer-ship {
+  background: blue;
+}
 .board table td:hover {
   background: red;
 }
