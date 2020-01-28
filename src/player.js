@@ -13,9 +13,11 @@ function Player()  {
       const div = document.createElement('div');
       div.classList.add('board', 'player-board');
       const container = document.querySelector('.container');
+      container.innerHTML = ``;
       const table = document.createElement('table');
       table.innerHTML += `<tbody> </tbody>`;
       div.appendChild(table);
+
       container.appendChild(div)
 
       const board = this.gameEnvironment.board;
@@ -48,6 +50,8 @@ function Player()  {
         while(!this.validPosition(shipsLength, randomPosition[0], randomPosition[1])){
           randomPosition = this.randomPlace();
         }
+            console.log(randomPosition);
+
 
         this.placeShip(shipsLength, randomPosition[0], randomPosition[1]);
 
@@ -66,21 +70,40 @@ function Player()  {
 
     validPosition: function(shipLength, letter, position){
       //check if there is already a ship;
-      const player_gameboard = this.gameEnvironment.board;
 
+      const player_gameboard = this.gameEnvironment.board;
       const row_x_index = this.gameEnvironment.letterToNum[letter];
       const row_x = player_gameboard[row_x_index];
 
-      if(position + shipLength < 10){
-        let real_ship_length = position + shipLength;
-        while(real_ship_length > 0){
-          if(row_x[real_ship_length].match(/ship/)){
+      if((position + shipLength) <= 10){
+        console.log(`placing a ship at postion ${position}, with length ${shipLength}, at the letter ${letter} so the total ship length is ${position + shipLength}`)
+        let real_ship_length = position + shipLength -1;
+
+        while(real_ship_length > position - 1){
+
+          if(row_x[real_ship_length-1].match(/ship/)){
+
+            // console.log(`the position ${letter}, ${position} with a ship of length ${shipLength} is alterady taken`)
             return false;
           }
           real_ship_length --;
         }
         return true;
+      } else {
+        let ship_end_position = position - shipLength - 1;
+        while(position - 1 > ship_end_position){
+
+          if(row_x[position - 1].match(/ship/)){
+            return false;
+          }
+          position --;
+        }
+
+        return true;
+
+
       }
+
 
 
 

@@ -11,14 +11,20 @@ function Game (){
 
 
     start: function(){
+
       const player = Player()
+      console.log(player);
+
       // const computer = Computer();
       // while(player.gameEnvironment.all_ships_sunk || computer.gameEnvironment.all_ships_sunk){
       //
       // }
-console.log("calling random placement")
+
 player.placeRandomShips();
-      player.printBoard();
+
+  player.printBoard();
+
+
       // computer.printBoard();
 
       // while(player.gameEnvironment.all_ships_sunk === false && player.gameEnvironment.all_ships_sunk === false){
