@@ -10,7 +10,7 @@
   },
 
   isSunk: function(){
-    const response = this.places.every(el => el === 'hit');
+    const response = this.ship_coordonates.every(el => el === 'hit');
     if(response){
       this.state = 'sunk';
       return true;

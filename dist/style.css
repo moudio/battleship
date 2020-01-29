@@ -39,3 +39,7 @@ td {
 .miss {
   background: black;
 }
+
+.sunk {
+  background: orange;
+}

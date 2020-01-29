@@ -51,14 +51,45 @@ function Computer()  {
            tbody.appendChild(table_row);
 
         });
-
         document.querySelector('.computer-board').addEventListener('click', this.updateShip);
-
-
     },
 
-    updateBoardCode: {
+    updateBoard: function() {
+const board_cells = Array.from(document.querySelectorAll('.computer-board td'));
 
+board_cells.forEach(cell => {
+  if(cell.className.match(/hit/g)){
+      const cellClassNames = cell.className
+      const shipName= cellClassNames.match(/ship-\d+/)[0];
+      const shipNumber = Number(shipName.charAt(shipName.length -1));
+      const gridcoord = cellClassNames.match(/[A-Z]\d+/)[0];
+// console.log(this.gameEnvironment.board);
+console.log(shipNumber, gridcoord)
+// console.log(this.gameEnvironment);
+const ship = this.gameEnvironment.ships[shipNumber];
+
+for(let i = 0 ; i < ship.ship_coordonates.length; i++){
+  if(ship.ship_coordonates[i] == gridcoord){
+    console.log("found" + ship.ship_coordonates[i])
+    ship.ship_coordonates[i] = "hit";
+
+    if(ship.isSunk()){
+      cell.classList.add("sunk")
+    }
+
+  }
+
+  console.log(ship)
+
+
+}
+
+
+
+  } else if (cell.className.match(/miss/g)) {
+
+  }
+});
     },
 
     updateShip: function(e){
@@ -74,6 +105,8 @@ function Computer()  {
         }
 
     },
+
+
 
     placeRandomShips: function(){
 

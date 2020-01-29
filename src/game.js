@@ -14,11 +14,11 @@ function Game (){
       const computer = Computer();
       player.placeRandomShips();
       computer.placeRandomShips();
-
-        // setInterval(function(){
-          player.printBoard();
-           computer.printBoard();
-        // }, 3000)
+      player.printBoard();
+       computer.printBoard();
+        setInterval(function(){
+          computer.updateBoard();
+        }, 3000)
   }
 }
 };
