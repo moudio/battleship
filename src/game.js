@@ -15,10 +15,10 @@ function Game (){
       player.placeRandomShips();
       computer.placeRandomShips();
 
-        setInterval(function(){
+        // setInterval(function(){
           player.printBoard();
            computer.printBoard();
-        }, 3000)
+        // }, 3000)
   }
 }
 };

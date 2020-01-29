@@ -57,27 +57,23 @@ function Computer()  {
 
     },
 
+    updateBoardCode: {
 
-    updateShip: (e) => {
+    },
+
+    updateShip: function(e){
         const target = e.target
         if(e.target.classList.contains('computer-ship')){
           e.target.classList.add('hit');
           const grid_classes = target.className.split(" ");
-          console.log(grid_classes)
           let ship_number = grid_classes.find(el => el.match(/ship-\d+/g));
           ship_number = Number(ship_number[ship_number.length - 1])
           const ship_coord = grid_classes.find(el => el.match(/[A-J]\d+/g));
-          console.log(ship_coord)
-          console.log([ship_number, ship_coord]);
         } else {
           e.target.classList.add('miss');
         }
+
     },
-
-hit_ship: function(){
-  console.log(this.gameEnvironment)
-},
-
 
     placeRandomShips: function(){
 

@@ -69,7 +69,6 @@ function Player()  {
     },
 
     validPosition: function(shipLength, letter, position){
-      //check if there is already a ship;
 
       const player_gameboard = this.gameEnvironment.board;
       const row_x_index = this.gameEnvironment.letterToNum[letter];
@@ -82,7 +81,6 @@ function Player()  {
 
           if(row_x[real_ship_length-1].match(/ship/)){
 
-            // console.log(`the position ${letter}, ${position} with a ship of length ${shipLength} is alterady taken`)
             return false;
           }
           real_ship_length --;
