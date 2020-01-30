@@ -82,6 +82,7 @@ function Computer() {
         };
 
       }
+
       board_cells.forEach(cell => {
         if (cell.className.match(/hit/g)) {
           const cellClassNames = cell.className
@@ -94,19 +95,19 @@ function Computer() {
             if (ship.ship_coordonates[i] == gridcoord) {
               ship.places[i] = "hit";
               if (ship.isSunk()){
-                this.changeShipSunkColor(ship);
+                this.changeShipSunk(ship);
               }
 
             }
           }
-        } else if (cell.className.match(/miss/g)) {
-
         }
+        // } else if (cell.className.match(/miss/g)) {
+        //
+        // }
       });
-      // console.log(this.gameEnvironment.all_ships_sunk());
+       console.log(this.gameEnvironment.all_ships_sunk());
     },
-    changeShipSunkColor: function(ship) {
-      console.log("change ship called")
+    changeShipSunk: function(ship) {
       const board_cells = Array.from(document.querySelectorAll('.computer-board td'));
       const index_letter = this.gameEnvironment.letterToNum[ship.ship_coordonates[0][0]];
       const letter_num = Number(ship.ship_coordonates[0].match(/\d+/g)[0]);

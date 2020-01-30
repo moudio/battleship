@@ -12,7 +12,7 @@ function Game (){
       computer.placeRandomShips();
       setInterval(function(){
           computer.updateBoard();
-          player.updateBoard();
+          // player.updateBoard();
         }, 300)
   }
 }
