@@ -63,7 +63,7 @@ function Computer() {
       if (document.querySelector("h1")) {
         let h1 = document.querySelector("h1");
         if (h1.innerHTML === "Computer") {
-          const computer_move = this.randomMove();
+          const computer_move = this.validRandomComputerMove();
           if (!document.querySelector('p')) {
             let p = document.createElement("p");
             p.innerHTML += `${computer_move[0]}`;
@@ -106,8 +106,18 @@ function Computer() {
         // }
       });
 
-    
 
+
+    },
+
+    validRandomComputerMove: function(){
+      let randomComputerMove = this.randomMove();
+      while(this.gameEnvironment.moves.indexOf(randomComputerMove.join("")) !== -1){
+        randomComputerMove = this.randomMove();
+      }
+      this.gameEnvironment.moves.push(randomComputerMove.join(""));
+      console.log(this.gameEnvironment.moves)
+      return randomComputerMove;
     },
     changeShipSunk: function(ship) {
       const board_cells = Array.from(document.querySelectorAll('.computer-board td'));
