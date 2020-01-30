@@ -53,7 +53,7 @@ function Player()  {
            const attack_number = Number(p_coordonates.match(/\d+/g)[0]);
            this.gameEnvironment.receiveAttack(attack_letter, attack_number);
            this.updateCell(p_coordonates)
-
+        this.addMove();
       }
   const board_cells = Array.from(document.querySelectorAll('.player-board td'));
 
@@ -156,23 +156,25 @@ for(let i = 0 ; i < ship.ship_coordonates.length; i++){
           }
           position --;
         }
-
         return true;
-
-
       }
+    },
 
-
-
+    addMove: function(){
+     const move_p = document.querySelector('.player-move').innerHTML
+     if(this.gameEnvironment.moves.indexOf(move_p) === -1){
+       this.gameEnvironment.moves.push(move_p)
+       console.log(this.gameEnvironment.moves, "playes console log")
+     }
 
     }
 
 
+    
   }
 
-
-
 }
+
 
 
 module.exports = Player;

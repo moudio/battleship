@@ -111,12 +111,9 @@ function Computer() {
     validRandomComputerMove: function(){
       let randomComputerMove = this.randomMove();
       while(this.gameEnvironment.moves.indexOf(randomComputerMove.join("")) !== -1){
-        console.log(`the move is ${randomComputerMove} is not valid`)
-
         randomComputerMove = this.randomMove();
       }
       this.gameEnvironment.moves.push(randomComputerMove.join(""));
-      console.log(this.gameEnvironment.moves)
       return randomComputerMove;
     },
     changeShipSunk: function(ship) {
@@ -150,6 +147,17 @@ function Computer() {
         let ship_number = grid_classes.find(el => el.match(/ship-\d+/g));
         ship_number = Number(ship_number[ship_number.length - 1])
         const ship_coord = grid_classes.find(el => el.match(/[A-J]\d+/g));
+        if(!document.querySelector('.player-move')){
+        const span = document.createElement('span')
+        span.className = "player-move"
+        span.innerHTML = ship_coord
+        document.querySelector('.container').appendChild(span);
+        }
+        else{
+          const span = document.querySelector('.player-move')
+          span.innerHTML = "";
+          span.innerHTML = ship_coord
+        }
       } else {
         e.target.classList.add('miss');
       }
