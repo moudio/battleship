@@ -11,6 +11,7 @@ function Computer()  {
       const random_letter = letters[random_index];
       const random_y = Math.ceil(Math.random() * 10);
       return [random_letter, random_y];
+
     },
     turn: true,
     gameEnvironment: Gameboard(),
@@ -58,7 +59,28 @@ function Computer()  {
 
     updateBoard: function() {
       const board_cells = Array.from(document.querySelectorAll('.computer-board td'));
+     if(document.querySelector("h1")){
+              let h1 = document.querySelector("h1");
+              if(h1.innerHTML === "Computer"){
+                const computer_move = this.randomMove();
+                if(!document.querySelector('p')){
+                let p = document.createElement("p");
+                p.innerHTML += `${computer_move[0]}`;
+                p.innerHTML += `${computer_move[1]}`;
+                document.querySelector('.container').appendChild(p);
+              } else {
+                const p = document.querySelector('p');
+                p.innerHTML = '';
+                p.innerHTML += `${computer_move[0]}`;
+                p.innerHTML += `${computer_move[1]}`;
+              }
+                 h1.innerHTML = "Player";
+                document.querySelector('.computer-board').removeEventListener('click', this.updateShip);
+              } else {
+                document.querySelector('.computer-board').addEventListener('click', this.updateShip);
+        };
 
+        }
 board_cells.forEach(cell => {
   if(cell.className.match(/hit/g)){
       const cellClassNames = cell.className
@@ -96,9 +118,13 @@ for(let i = 0 ; i < ship.ship_coordonates.length; i++){
     },
 
     updateShip: function(e){
+      if(!document.querySelector('h1')){
         const h1 = document.createElement('h1');
         h1.innerHTML = "Computer";
-        document.querySelector('.computer').appendChild(h1);
+        document.querySelector('.container').appendChild(h1);
+      } else {
+        document.querySelector('h1').innerHTML = "Computer"
+      }
         const target = e.target
         if(e.target.classList.contains('computer-ship')){
           e.target.classList.add('hit');

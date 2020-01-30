@@ -65,9 +65,8 @@ if(hit_coordonate[0] === 'ship'){
   const indexHit = hit_ship.ship_coordonates.indexOf(`${x}${y}`);
   hit_ship.ship_coordonates[indexHit] = 'hit'
 } else {
-    this.board[row_x][y - 1]  = 'X';
+    this.board[row_x][y - 1]  = 'miss';
 }
-
 },
 
 attack: function(x,y){
