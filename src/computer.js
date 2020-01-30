@@ -3,15 +3,16 @@ const Gameboard = require ('./gameboard');
 function Computer()  {
 
   return {
+
     randomMove: function(){
       const letters = ['A', 'B', 'C', 'D',
                           'E', 'F', 'G', 'H', 'I', 'J'];
-      const random_index = Math.floor(Math.random() * possible_x.length);
+      const random_index = Math.floor(Math.random() * letters.length);
       const random_letter = letters[random_index];
       const random_y = Math.ceil(Math.random() * 10);
       return [random_letter, random_y];
     },
-    turn: false,
+    turn: true,
     gameEnvironment: Gameboard(),
     placeShip: function(n, x, y){
     const newShip =  this.gameEnvironment.createShip(n);
@@ -46,53 +47,58 @@ function Computer()  {
           t_data.innerHTML = ``;
           table_row.appendChild(t_data);
            }
-
-
            tbody.appendChild(table_row);
-
         });
+
+
         document.querySelector('.computer-board').addEventListener('click', this.updateShip);
+
+
     },
 
     updateBoard: function() {
-const board_cells = Array.from(document.querySelectorAll('.computer-board td'));
+      const board_cells = Array.from(document.querySelectorAll('.computer-board td'));
 
 board_cells.forEach(cell => {
   if(cell.className.match(/hit/g)){
       const cellClassNames = cell.className
-      const shipName= cellClassNames.match(/ship-\d+/)[0];
+      const shipName = cellClassNames.match(/ship-\d+/)[0];
       const shipNumber = Number(shipName.charAt(shipName.length -1));
       const gridcoord = cellClassNames.match(/[A-Z]\d+/)[0];
-// console.log(this.gameEnvironment.board);
-console.log(shipNumber, gridcoord)
-// console.log(this.gameEnvironment);
 const ship = this.gameEnvironment.ships[shipNumber];
 
 for(let i = 0 ; i < ship.ship_coordonates.length; i++){
   if(ship.ship_coordonates[i] == gridcoord){
-    console.log("found" + ship.ship_coordonates[i])
-    ship.ship_coordonates[i] = "hit";
-
+    ship.places[i] = "hit";
     if(ship.isSunk()){
-      cell.classList.add("sunk")
+      this.changeShipSunkColor(ship);
     }
 
   }
-
-  console.log(ship)
-
-
 }
-
-
-
   } else if (cell.className.match(/miss/g)) {
 
   }
 });
     },
+    changeShipSunkColor: function(ship){
+      const board_cells = Array.from(document.querySelectorAll('.computer-board td'));
+      const index_letter = this.gameEnvironment.letterToNum[ship.ship_coordonates[0][0]];
+      const letter_num = Number(ship.ship_coordonates[0].match(/\d+/g)[0]);
+      let index_to_start = index_letter * 10 + letter_num - 1 ;
+      let i = 0 ;
+      while(i < ship.length){
+        board_cells[index_to_start].classList.add('sunk');
+        index_to_start ++;
+        i++;
+      }
+
+    },
 
     updateShip: function(e){
+        const h1 = document.createElement('h1');
+        h1.innerHTML = "Computer";
+        document.querySelector('.computer').appendChild(h1);
         const target = e.target
         if(e.target.classList.contains('computer-ship')){
           e.target.classList.add('hit');
@@ -116,21 +122,19 @@ for(let i = 0 ; i < ship.ship_coordonates.length; i++){
         while(!this.validPosition(shipsLength, randomPosition[0], randomPosition[1])){
           randomPosition = this.randomPlace();
         }
-
-
         this.placeShip(shipsLength, randomPosition[0], randomPosition[1]);
 
       });
-
+      this.printBoard();
 
     },
+
 
     randomPlace: function(){
       const randomLetter = String.fromCharCode(65 + Math.round(Math.random() * 9));
       const randomNumber = Math.ceil(Math.random() * 10);
       const result = [randomLetter, randomNumber];
       return result;
-
     },
 
     validPosition: function(shipLength, letter, position){

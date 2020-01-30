@@ -45,7 +45,7 @@ if(max_length <= 10){
 max_length = y - ship.length;
 for(let i = y; i > max_length; i--){
   this.board[row_x][i - 1] += `ship-${this.ships.length}`;
-  ship.ship_coordonates.push(`${x}${i}` );
+  ship.ship_coordonates.unshift(`${x}${i}` );
 }
 
 }

@@ -9,16 +9,14 @@ function Game (){
       player.gameEnvironment.receiveAttack(x,y);
     },
     start: function(){
-
       const player = Player();
       const computer = Computer();
       player.placeRandomShips();
       computer.placeRandomShips();
-      player.printBoard();
-       computer.printBoard();
-        setInterval(function(){
+      // setInterval(function(){
           computer.updateBoard();
-        }, 3000)
+
+        // }, 3000)
   }
 }
 };

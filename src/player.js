@@ -56,7 +56,7 @@ function Player()  {
         this.placeShip(shipsLength, randomPosition[0], randomPosition[1]);
 
       });
-
+      this.printBoard();
 
     },
 
