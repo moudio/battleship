@@ -57,7 +57,6 @@ this.ships.push(ship);
 receiveAttack: function(x, y){
 const row_x = this.letterToNum[x];
 let hit_coordonate = this.board[row_x][y-1].split('-');
-
 if(hit_coordonate[0] === 'ship'){
   this.board[row_x][y - 1] = 'hit';
   const ship_number = hit_coordonate[1];
