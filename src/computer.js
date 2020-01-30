@@ -52,9 +52,7 @@ function Computer() {
         tbody.appendChild(table_row);
       });
 
-
-      document.querySelector('.computer-board').addEventListener('click', this.updateShip);
-
+      document.querySelector('.computer-board').addEventListener('click', this.updateCell);
 
     },
 
@@ -76,9 +74,9 @@ function Computer() {
             p.innerHTML += `${computer_move[1]}`;
           }
           h1.innerHTML = "Player";
-          document.querySelector('.computer-board').removeEventListener('click', this.updateShip);
+          document.querySelector('.computer-board').removeEventListener('click', this.updateCell);
         } else {
-          document.querySelector('.computer-board').addEventListener('click', this.updateShip);
+          document.querySelector('.computer-board').addEventListener('click', this.updateCell);
         };
 
       }
@@ -113,6 +111,8 @@ function Computer() {
     validRandomComputerMove: function(){
       let randomComputerMove = this.randomMove();
       while(this.gameEnvironment.moves.indexOf(randomComputerMove.join("")) !== -1){
+        console.log(`the move is ${randomComputerMove} is not valid`)
+
         randomComputerMove = this.randomMove();
       }
       this.gameEnvironment.moves.push(randomComputerMove.join(""));
@@ -135,7 +135,7 @@ function Computer() {
 
     },
 
-    updateShip: function(e) {
+    updateCell: function(e) {
       if (!document.querySelector('h1')) {
         const h1 = document.createElement('h1');
         h1.innerHTML = "Computer";
