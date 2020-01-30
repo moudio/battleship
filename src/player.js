@@ -80,13 +80,26 @@ for(let i = 0 ; i < ship.ship_coordonates.length; i++){
 });
     },
 
+    changeShipSunkColor: function(ship) {
+      const board_cells = Array.from(document.querySelectorAll('.player-board td'));
+      const index_letter = this.gameEnvironment.letterToNum[ship.ship_coordonates[0][0]];
+      const letter_num = Number(ship.ship_coordonates[0].match(/\d+/g)[0]);
+      let index_to_start = index_letter * 10 + letter_num - 1;
+      let i = 0;
+      while (i < ship.length) {
+        board_cells[index_to_start].classList.add('sunk');
+        board_cells[index_to_start].classList.remove('hit');
+
+        index_to_start++;
+        i++;
+      }
+
+    },
+
     updateCell: function(td_class){
         const td_target = document.querySelector(`.${td_class}`);
         if(td_target.classList.contains('player-ship')){
           td_target.classList.add('hit');
-          // const grid_classes = td_target.className.split(" ");
-          // let ship_number = grid_classes.find(el => el.match(/ship-\d+/g));
-          // ship_number = Number(ship_number[ship_number.length - 1])
         } else {
           td_target.classList.add('miss');
         }
@@ -100,8 +113,7 @@ for(let i = 0 ; i < ship.ship_coordonates.length; i++){
         while(!this.validPosition(shipsLength, randomPosition[0], randomPosition[1])){
           randomPosition = this.randomPlace();
         }
-
-
+        
         this.placeShip(shipsLength, randomPosition[0], randomPosition[1]);
 
       });

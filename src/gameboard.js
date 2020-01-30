@@ -78,7 +78,9 @@ all_ships_sunk : function(){
 return this.ships.every(ship => ship.isSunk() === true)
 },
 
-
+game_over : function(){
+alert("game over")
+}
 }
 }
 

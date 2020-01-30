@@ -105,7 +105,9 @@ function Computer() {
         //
         // }
       });
-       console.log(this.gameEnvironment.all_ships_sunk());
+
+    
+
     },
     changeShipSunk: function(ship) {
       const board_cells = Array.from(document.querySelectorAll('.computer-board td'));
