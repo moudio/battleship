@@ -124,7 +124,6 @@ function Computer() {
       let i = 0;
       while (i < ship.length) {
         board_cells[index_to_start].classList.add('sunk');
-        board_cells[index_to_start].classList.remove('hit');
 
         index_to_start++;
         i++;
@@ -133,6 +132,12 @@ function Computer() {
     },
 
     updateCell: function(e) {
+      // console.log(e.target.classList.value)
+      if(e.target.classList.contains('hit') || e.target.classList.contains('miss')){
+        alert("you can't play twice");
+        return
+      }
+
       if (!document.querySelector('h1')) {
         const h1 = document.createElement('h1');
         h1.innerHTML = "Computer";
@@ -140,10 +145,10 @@ function Computer() {
       } else {
         document.querySelector('h1').innerHTML = "Computer"
       }
-      const target = e.target
+
       if (e.target.classList.contains('computer-ship')) {
         e.target.classList.add('hit');
-        const grid_classes = target.className.split(" ");
+        const grid_classes = e.target.className.split(" ");
         let ship_number = grid_classes.find(el => el.match(/ship-\d+/g));
         ship_number = Number(ship_number[ship_number.length - 1])
         const ship_coord = grid_classes.find(el => el.match(/[A-J]\d+/g));
@@ -161,6 +166,9 @@ function Computer() {
       } else {
         e.target.classList.add('miss');
       }
+
+      console.log(e.target.classList)
+
 
     },
 
