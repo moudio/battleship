@@ -59,22 +59,23 @@ function Computer() {
 
     updateBoard: function() {
       const board_cells = Array.from(document.querySelectorAll('.computer-board td'));
-      if (document.querySelector("h1")) {
-        let h1 = document.querySelector("h1");
-        if (h1.innerHTML === "Computer") {
+      if (document.querySelector(".turn")) {
+        let turn_span = document.querySelector(".turn");
+        if (turn_span.innerHTML === "Computer") {
           const computer_move = this.validRandomComputerMove();
-          if (!document.querySelector('p')) {
-            let p = document.createElement("p");
-            p.innerHTML += `${computer_move[0]}`;
-            p.innerHTML += `${computer_move[1]}`;
-            document.querySelector('.container').appendChild(p);
+          if (!document.querySelector('.comp-move')) {
+            let comp_move_span = document.createElement("span");
+            comp_move_span.className = 'comp-move'
+            comp_move_span.innerHTML += `${computer_move[0]}`;
+            comp_move_span.innerHTML += `${computer_move[1]}`;
+            document.querySelector('.container').appendChild(comp_move_span);
           } else {
-            const p = document.querySelector('p');
-            p.innerHTML = '';
-            p.innerHTML += `${computer_move[0]}`;
-            p.innerHTML += `${computer_move[1]}`;
+            const comp_move_span = document.querySelector('.comp-move');
+            comp_move_span.innerHTML = '';
+            comp_move_span.innerHTML += `${computer_move[0]}`;
+            comp_move_span.innerHTML += `${computer_move[1]}`;
           }
-          h1.innerHTML = "Player";
+          turn_span.innerHTML = "Player";
           document.querySelector('.computer-board').removeEventListener('click', this.updateCell);
         } else {
           document.querySelector('.computer-board').addEventListener('click', this.updateCell);
@@ -139,12 +140,13 @@ function Computer() {
         return
       }
 
-      if (!document.querySelector('h1')) {
-        const h1 = document.createElement('h1');
-        h1.innerHTML = "Computer";
-        document.querySelector('.container').appendChild(h1);
+      if (!document.querySelector('.turn')) {
+        const turn_span = document.createElement('span');
+        turn_span.className = 'turn'
+        turn_span.innerHTML = "Computer";
+        document.querySelector('.container').appendChild(turn_span);
       } else {
-        document.querySelector('h1').innerHTML = "Computer"
+        document.querySelector('.turn').innerHTML = "Computer"
       }
 
       if (e.target.classList.contains('computer-ship')) {

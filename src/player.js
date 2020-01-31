@@ -47,8 +47,8 @@ function Player()  {
 
     updateBoard: function() {
 
-      if(document.querySelector('p')){
-          const p_coordonates = document.querySelector('p').innerHTML;
+      if(document.querySelector('.comp-move')){
+          const p_coordonates = document.querySelector('.comp-move').innerHTML;
           const attack_letter = p_coordonates.match(/[A-J]/g)[0];
            const attack_number = Number(p_coordonates.match(/\d+/g)[0]);
            this.gameEnvironment.receiveAttack(attack_letter, attack_number);

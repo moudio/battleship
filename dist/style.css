@@ -7,6 +7,12 @@ td {
 .player-ship {
   background: green;
 }
+.turn, 
+.player-move,
+.comp-move{
+ visibility: hidden;
+}
+
 
 .computer-ship {
   background: blue;
