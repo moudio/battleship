@@ -16,6 +16,7 @@ function Computer() {
     },
     turn: true,
     gameEnvironment: Gameboard(),
+
     placeShip: function(n, x, y) {
       const newShip = this.gameEnvironment.createShip(n);
       this.gameEnvironment.placeShip(newShip, x, y);
@@ -166,8 +167,6 @@ function Computer() {
       } else {
         e.target.classList.add('miss');
       }
-
-      console.log(e.target.classList)
 
 
     },

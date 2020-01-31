@@ -112,6 +112,7 @@ for(let i = 0 ; i < ship.ship_coordonates.length; i++){
         while(!this.validPosition(shipsLength, randomPosition[0], randomPosition[1])){
           randomPosition = this.randomPlace();
         }
+        console.log(randomPosition)
 
         this.placeShip(shipsLength, randomPosition[0], randomPosition[1]);
 
@@ -139,7 +140,7 @@ for(let i = 0 ; i < ship.ship_coordonates.length; i++){
 
         while(real_ship_length > position - 1){
 
-          if(row_x[real_ship_length-1].match(/ship/)){
+          if(row_x[real_ship_length-1].match(/ship/) || row_x[real_ship_length -1].match(/blank/)){
 
             return false;
           }
@@ -150,11 +151,12 @@ for(let i = 0 ; i < ship.ship_coordonates.length; i++){
         let ship_end_position = position - shipLength - 1;
         while(position - 1 > ship_end_position){
 
-          if(row_x[position - 1].match(/ship/)){
+          if(row_x[position - 1].match(/ship/) || row_x[position-1].match(/blank/)){
             return false;
           }
           position --;
         }
+
         return true;
       }
     }

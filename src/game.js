@@ -10,7 +10,6 @@ function Game (){
       const computer = Computer();
       player.placeRandomShips();
       computer.placeRandomShips();
-      // while(!player.gameEnvironment.all_ships_sunk() && !computer.gameEnvironment.all_ships_sunk()){
       const game_loop = setInterval(function(){
         if(!player.gameEnvironment.all_ships_sunk() && !computer.gameEnvironment.all_ships_sunk()){
           computer.updateBoard();
@@ -21,7 +20,6 @@ function Game (){
         }
         }, 300)
 
-  // }
 }
 }
 };
