@@ -40,11 +40,11 @@ function Gameboard(player = null){
 if(max_length <= 10){
   for(let i = y; i < max_length; i++){
     this.board[row_x][i - 1] += `ship-${this.ships.length}`;
-    if(this.board[row_x - 1]){
-      this.board[row_x -1][i-1] += `blank`;
-    } if(this.board[row_x + 1]){
-      this.board[row_x + 1][i -1] += `blank`;
-    }
+    // if(this.board[row_x - 1]){
+    //   this.board[row_x -1][i-1] += `blank`;
+    // } if(this.board[row_x + 1]){
+    //   this.board[row_x + 1][i -1] += `blank`;
+    // }
 
     ship.ship_coordonates.push(`${x}${i}` );
   }
@@ -52,13 +52,13 @@ if(max_length <= 10){
 max_length = y - ship.length;
 for(let i = y; i > max_length; i--){
   this.board[row_x][i - 1] += `ship-${this.ships.length}`;
-  if(this.board[row_x -1]){
-    this.board[row_x -1][i-1] += `blank`;
-  }
-  if(this.board[row_x + 1]){
-    this.board[row_x -1][i-1] += `blank`;
-
-  }
+  // if(this.board[row_x -1]){
+  //   this.board[row_x -1][i-1] += `blank`;
+  // }
+  // if(this.board[row_x + 1]){
+  //   this.board[row_x -1][i-1] += `blank`;
+  //
+  // }
 
 
   ship.ship_coordonates.unshift(`${x}${i}` );
@@ -67,7 +67,6 @@ for(let i = y; i > max_length; i--){
 }
 
 this.ships.push(ship);
-console.log(this.board)
   return  this.board;
 },
 

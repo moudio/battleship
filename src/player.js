@@ -48,11 +48,11 @@ function Player()  {
     updateBoard: function() {
 
       if(document.querySelector('.comp-move')){
-          const p_coordonates = document.querySelector('.comp-move').innerHTML;
-          const attack_letter = p_coordonates.match(/[A-J]/g)[0];
-           const attack_number = Number(p_coordonates.match(/\d+/g)[0]);
+          const span_coordonates = document.querySelector('.comp-move').innerHTML;
+          const attack_letter = span_coordonates.match(/[A-J]/g)[0];
+           const attack_number = Number(span_coordonates.match(/\d+/g)[0]);
            this.gameEnvironment.receiveAttack(attack_letter, attack_number);
-           this.updateCell(p_coordonates)
+           this.updateCell(span_coordonates)
       }
   const board_cells = Array.from(document.querySelectorAll('.player-board td'));
 
@@ -112,7 +112,6 @@ for(let i = 0 ; i < ship.ship_coordonates.length; i++){
         while(!this.validPosition(shipsLength, randomPosition[0], randomPosition[1])){
           randomPosition = this.randomPlace();
         }
-        console.log(randomPosition)
 
         this.placeShip(shipsLength, randomPosition[0], randomPosition[1]);
 
@@ -140,7 +139,7 @@ for(let i = 0 ; i < ship.ship_coordonates.length; i++){
 
         while(real_ship_length > position - 1){
 
-          if(row_x[real_ship_length-1].match(/ship/) || row_x[real_ship_length -1].match(/blank/)){
+          if(row_x[real_ship_length-1].match(/ship/)){
 
             return false;
           }
@@ -151,7 +150,7 @@ for(let i = 0 ; i < ship.ship_coordonates.length; i++){
         let ship_end_position = position - shipLength - 1;
         while(position - 1 > ship_end_position){
 
-          if(row_x[position - 1].match(/ship/) || row_x[position-1].match(/blank/)){
+          if(row_x[position - 1].match(/ship/)){
             return false;
           }
           position --;

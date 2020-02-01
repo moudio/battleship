@@ -7,10 +7,11 @@ td {
 .player-ship {
   background: green;
 }
-.turn, 
+.turn,
 .player-move,
 .comp-move{
  visibility: hidden;
+ width: 20px;
 }
 
 

@@ -68,7 +68,7 @@ function Computer() {
             comp_move_span.className = 'comp-move'
             comp_move_span.innerHTML += `${computer_move[0]}`;
             comp_move_span.innerHTML += `${computer_move[1]}`;
-            document.querySelector('.container').appendChild(comp_move_span);
+            document.querySelector('body').appendChild(comp_move_span);
           } else {
             const comp_move_span = document.querySelector('.comp-move');
             comp_move_span.innerHTML = '';
@@ -134,7 +134,6 @@ function Computer() {
     },
 
     updateCell: function(e) {
-      // console.log(e.target.classList.value)
       if(e.target.classList.contains('hit') || e.target.classList.contains('miss')){
         alert("you can't play twice");
         return
@@ -144,7 +143,7 @@ function Computer() {
         const turn_span = document.createElement('span');
         turn_span.className = 'turn'
         turn_span.innerHTML = "Computer";
-        document.querySelector('.container').appendChild(turn_span);
+        document.querySelector('body').appendChild(turn_span);
       } else {
         document.querySelector('.turn').innerHTML = "Computer"
       }
@@ -159,7 +158,7 @@ function Computer() {
         const span = document.createElement('span')
         span.className = "player-move"
         span.innerHTML = ship_coord
-        document.querySelector('.container').appendChild(span);
+        document.querySelector('body').appendChild(span);
         }
         else{
           const span = document.querySelector('.player-move')
