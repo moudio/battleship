@@ -11,12 +11,18 @@ function Player()  {
     },
     printBoard: function(){
       const div = document.createElement('div');
+
       div.classList.add('board', 'player-board');
       const container = document.querySelector('.container');
       container.innerHTML = ``;
       const table = document.createElement('table');
+      const player_caption = document.createElement('caption');
+      player_caption.className = 'table-caption'
+      table.appendChild(player_caption)
+      player_caption.innerHTML = 'Your board';
       table.innerHTML += `<tbody> </tbody>`;
       div.appendChild(table);
+
 
       container.appendChild(div)
 
@@ -31,7 +37,7 @@ function Player()  {
           const t_data = document.createElement('td');
 
           if(element.match(/ship/g)){
-            const shipName = element.match(/ship-\d+/)[0];
+            const shipName = element.match(/ship_\d+/)[0];
             const gridcoord = element.match(/[A-Z]\d+/)[0]
             t_data.classList.add('player-ship', shipName, gridcoord);
           } else {
@@ -51,15 +57,15 @@ function Player()  {
           const span_coordonates = document.querySelector('.comp-move').innerHTML;
           const attack_letter = span_coordonates.match(/[A-J]/g)[0];
            const attack_number = Number(span_coordonates.match(/\d+/g)[0]);
-           this.gameEnvironment.receiveAttack(attack_letter, attack_number);
-           this.updateCell(span_coordonates)
+            this.gameEnvironment.receiveAttack(attack_letter, attack_number);
+              this.updatePlayerCell(span_coordonates)
       }
   const board_cells = Array.from(document.querySelectorAll('.player-board td'));
 
 board_cells.forEach(cell => {
   if(cell.className.match(/hit/g)){
       const cellClassNames = cell.className
-      const shipName = cellClassNames.match(/ship-\d+/)[0];
+      const shipName = cellClassNames.match(/ship_\d+/)[0];
       const shipNumber = Number(shipName.charAt(shipName.length -1));
       const gridcoord = cellClassNames.match(/[A-Z]\d+/)[0];
 const ship = this.gameEnvironment.ships[shipNumber];
@@ -87,16 +93,19 @@ for(let i = 0 ; i < ship.ship_coordonates.length; i++){
       let i = 0;
       while (i < ship.length) {
         board_cells[index_to_start].classList.add('sunk');
-        board_cells[index_to_start].classList.remove('hit');
-
         index_to_start++;
         i++;
       }
 
     },
 
-    updateCell: function(td_class){
-        const td_target = document.querySelector(`.${td_class}`);
+    updatePlayerCell: function(td_class){
+
+        let td_target = document.querySelector(`.player-board .${td_class}`);
+        if(td_target === null){
+          td_target = document.querySelector(`.player-board .${td_class}-blank`);
+        }
+
         if(td_target.classList.contains('player-ship')){
           td_target.classList.add('hit');
         } else {
@@ -139,7 +148,8 @@ for(let i = 0 ; i < ship.ship_coordonates.length; i++){
 
         while(real_ship_length > position - 1){
 
-          if(row_x[real_ship_length-1].match(/ship/)){
+          if(row_x[real_ship_length-1].match(/blank/) ||
+          row_x[real_ship_length-1].match(/ship/)  ){
 
             return false;
           }
@@ -150,7 +160,8 @@ for(let i = 0 ; i < ship.ship_coordonates.length; i++){
         let ship_end_position = position - shipLength - 1;
         while(position - 1 > ship_end_position){
 
-          if(row_x[position - 1].match(/ship/)){
+          if(row_x[position - 1].match(/blank/) ||
+              row_x[position - 1].match(/ship/)){
             return false;
           }
           position --;

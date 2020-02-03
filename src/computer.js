@@ -27,6 +27,10 @@ function Computer() {
       div.classList.add('board', 'computer-board')
       const container = document.querySelector('.container');
       const table = document.createElement('table');
+      const computer_caption = document.createElement('caption');
+      computer_caption.className = 'table-caption'
+      table.appendChild(computer_caption)
+      computer_caption.innerHTML = 'Computer board';
       table.innerHTML += `<tbody> </tbody>`;
       div.appendChild(table);
       container.appendChild(div)
@@ -40,13 +44,12 @@ function Computer() {
         for (let element of row) {
           const t_data = document.createElement('td');
           if (element.match(/ship/g)) {
-            const shipName = element.match(/ship-\d+/)[0];
+            const shipName = element.match(/ship_\d+/)[0];
             const gridcoord = element.match(/[A-Z]\d+/)[0]
             t_data.classList.add('computer-ship', shipName, gridcoord);
           } else {
             t_data.classList.add(element);
           }
-
           t_data.innerHTML = ``;
           table_row.appendChild(t_data);
         }
@@ -58,7 +61,6 @@ function Computer() {
     },
 
     updateBoard: function() {
-      const board_cells = Array.from(document.querySelectorAll('.computer-board td'));
       if (document.querySelector(".turn")) {
         let turn_span = document.querySelector(".turn");
         if (turn_span.innerHTML === "Computer") {
@@ -75,18 +77,20 @@ function Computer() {
             comp_move_span.innerHTML += `${computer_move[0]}`;
             comp_move_span.innerHTML += `${computer_move[1]}`;
           }
+
           turn_span.innerHTML = "Player";
           document.querySelector('.computer-board').removeEventListener('click', this.updateCell);
         } else {
           document.querySelector('.computer-board').addEventListener('click', this.updateCell);
-        };
+        }
 
       }
+      const board_cells = Array.from(document.querySelectorAll('.computer-board td'));
 
       board_cells.forEach(cell => {
         if (cell.className.match(/hit/g)) {
           const cellClassNames = cell.className
-          const shipName = cellClassNames.match(/ship-\d+/)[0];
+          const shipName = cellClassNames.match(/ship_\d+/)[0];
           const shipNumber = Number(shipName.charAt(shipName.length - 1));
           const gridcoord = cellClassNames.match(/[A-Z]\d+/)[0];
           const ship = this.gameEnvironment.ships[shipNumber];
@@ -94,7 +98,7 @@ function Computer() {
           for (let i = 0; i < ship.ship_coordonates.length; i++) {
             if (ship.ship_coordonates[i] == gridcoord) {
               ship.places[i] = "hit";
-              if (ship.isSunk()){
+              if (ship.isSunk()) {
                 this.changeShipSunk(ship);
               }
 
@@ -110,9 +114,9 @@ function Computer() {
 
     },
 
-    validRandomComputerMove: function(){
+    validRandomComputerMove: function() {
       let randomComputerMove = this.randomMove();
-      while(this.gameEnvironment.moves.indexOf(randomComputerMove.join("")) !== -1){
+      while (this.gameEnvironment.moves.indexOf(randomComputerMove.join("")) !== -1) {
         randomComputerMove = this.randomMove();
       }
       this.gameEnvironment.moves.push(randomComputerMove.join(""));
@@ -134,42 +138,48 @@ function Computer() {
     },
 
     updateCell: function(e) {
-      if(e.target.classList.contains('hit') || e.target.classList.contains('miss')){
-        alert("you can't play twice");
-        return
-      }
-
-      if (!document.querySelector('.turn')) {
-        const turn_span = document.createElement('span');
-        turn_span.className = 'turn'
-        turn_span.innerHTML = "Computer";
-        document.querySelector('body').appendChild(turn_span);
-      } else {
-        document.querySelector('.turn').innerHTML = "Computer"
-      }
-
-      if (e.target.classList.contains('computer-ship')) {
-        e.target.classList.add('hit');
+      if (e.target.tagName.toLowerCase() === "td") {
         const grid_classes = e.target.className.split(" ");
-        let ship_number = grid_classes.find(el => el.match(/ship-\d+/g));
-        ship_number = Number(ship_number[ship_number.length - 1])
-        const ship_coord = grid_classes.find(el => el.match(/[A-J]\d+/g));
-        if(!document.querySelector('.player-move')){
-        const span = document.createElement('span')
-        span.className = "player-move"
-        span.innerHTML = ship_coord
-        document.querySelector('body').appendChild(span);
+        let ship_coord = grid_classes.find(el => el.match(/[A-Z]\d+/g));
+        if (ship_coord.length > 3) {
+          ship_coord = ship_coord.split("-")[0];
         }
-        else{
+
+        if (!document.querySelector('.player-move')) {
+          const span = document.createElement('span')
+          span.className = "player-move"
+          span.innerHTML = ship_coord
+          document.querySelector('body').appendChild(span);
+        } else {
           const span = document.querySelector('.player-move')
           span.innerHTML = "";
           span.innerHTML = ship_coord
         }
-      } else {
-        e.target.classList.add('miss');
+
+        if (e.target.classList.contains('hit') || e.target.classList.contains('miss')) {
+          alert("you can't play twice");
+          return
+        }
+
+        if (!document.querySelector('.turn')) {
+          const turn_span = document.createElement('span');
+          turn_span.className = 'turn'
+          turn_span.innerHTML = "Computer";
+          document.querySelector('body').appendChild(turn_span);
+        } else {
+          document.querySelector('.turn').innerHTML = "Computer"
+        }
+
+        if (e.target.classList.contains('computer-ship')) {
+          e.target.classList.add('hit');
+          // let ship_number = grid_classes.find(el => el.match(/ship-\d+/g));
+          // ship_number = Number(ship_number[ship_number.length - 1])
+
+        } else {
+          e.target.classList.add('miss');
+        }
+
       }
-
-
     },
 
 
@@ -198,8 +208,6 @@ function Computer() {
     },
 
     validPosition: function(shipLength, letter, position) {
-      //check if there is already a ship;
-
       const player_gameboard = this.gameEnvironment.board;
       const row_x_index = this.gameEnvironment.letterToNum[letter];
       const row_x = player_gameboard[row_x_index];
@@ -209,7 +217,8 @@ function Computer() {
 
         while (real_ship_length > position - 1) {
 
-          if (row_x[real_ship_length - 1].match(/ship/)) {
+          if (row_x[real_ship_length - 1].match(/blank/) ||
+            row_x[real_ship_length - 1].match(/ship/)) {
 
             return false;
           }
@@ -220,7 +229,8 @@ function Computer() {
         let ship_end_position = position - shipLength - 1;
         while (position - 1 > ship_end_position) {
 
-          if (row_x[position - 1].match(/ship/)) {
+          if (row_x[position - 1].match(/blank/) ||
+            row_x[position - 1].match(/ship/)) {
             return false;
           }
           position--;
