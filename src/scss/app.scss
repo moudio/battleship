@@ -39,6 +39,9 @@ td {
 
 }
 
+.computer-ship {
+  background: yellow;
+}
 
 .hit {
   background: #A9CEF4;
@@ -84,8 +87,9 @@ td {
 }
 
 .game-over-div {
-  background: red;
   text-align: center;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .table-caption {

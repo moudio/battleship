@@ -11,7 +11,6 @@ function Player()  {
     },
     printBoard: function(){
       const div = document.createElement('div');
-
       div.classList.add('board', 'player-board');
       const container = document.querySelector('.container');
       container.innerHTML = ``;

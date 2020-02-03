@@ -55,34 +55,43 @@ function Gameboard(player = null) {
             if (!this.board[row_x - 1][i - 1].match(/blank/g)) {
               this.board[row_x - 1][i - 1] += "-blank";
             }
-            if (i === y) {
-              if (this.board[row_x - 1][i - 2] && !this.board[row_x - 1][i - 2].match(/blank/g)) {
-                this.board[row_x - 1][i - 2] += "-blank";
-              }
-              // if (this.board[row_x][i - 2] && !this.board[row_x][i - 2].match(/blank/g)) {
-              //   this.board[row_x][i - 2] += "-blank";
-              // }
-
-
-            }
-
-            if (i === max_length - 1) {
-              // if(this.board[row_x -1][i] && !this.board[row_x -1][i].match(/blank/g)){
-              //   this.board[row_x -1][i] += "-blank";
-              // }
-
-              if (this.board[row_x][i] && !this.board[row_x][i].match(/blank/g)) {
-                this.board[row_x][i] += "-blank";
-              }
-            }
 
           }
 
+          if(this.board[row_x]){
+
+          if (i === y) {
+            // if (this.board[row_x - 1][i - 2] && !this.board[row_x - 1][i - 2].match(/blank/g)) {
+            //   this.board[row_x - 1][i - 2] += "-blank";
+            //
+            // }
+
+            if (this.board[row_x][i - 2] && !this.board[row_x][i - 2].match(/blank/g)) {
+              this.board[row_x][i - 2] += "-blank";
+            }
+
+
+          }
+
+          if(max_length - y > 3){
+          if (i === max_length - 1) {
+            // if(this.board[row_x -1][i] && !this.board[row_x -1][i].match(/blank/g)){
+            //   this.board[row_x -1][i] += "-blank";
+            // }
+
+            if (this.board[row_x][i] && !this.board[row_x][i].match(/blank/g)) {
+              this.board[row_x][i] += "-blank";
+            }
+          }
+        }
+}
+
+
           if (this.board[row_x + 1]) {
-            if (!this.board[row_x + 1][i - 1].match(/blank/g)  ){
+            if (!this.board[row_x + 1][i - 1].match(/blank/g)) {
               this.board[row_x + 1][i - 1] += "-blank";
             }
-              // this.board[row_x + 1][i - 1] = this.board[row_x + 1][i - 1].split('-').join('');
+            // this.board[row_x + 1][i - 1] = this.board[row_x + 1][i - 1].split('-').join('');
 
 
             // if (i === y) {
@@ -152,29 +161,32 @@ function Gameboard(player = null) {
       return this.ships.every(ship => ship.isSunk() === true)
     },
 
+
+
     game_over: function(message) {
-      if(!document.querySelector('.card')){
-      const body = document.querySelector('body')
-      const container = document.querySelector('body');
-      const gameOverDiv = document.createElement('div');
-      gameOverDiv.innerHTML = `<div class="card text-center">
+      if (!document.querySelector('.restart')) {
+        const body = document.querySelector('body')
+        const container = document.querySelector('body');
+        const gameOverDiv = document.createElement('div');
+        gameOverDiv.innerHTML = `<div class="card text-center">
   <div class="card-header">
     Game over, ${message}
   </div>
   <div class="card-body">
-    <h5 class="card-title">Click to start again</h5>
     <a href="#" class="btn btn-primary restart">Restart</a>
   </div>
 </div>`
-      gameOverDiv.classList.add('game-over-div');
-      const restartButton = document.querySelector('.restart');
+        gameOverDiv.classList.add('game-over-div');
 
-      body.prepend(gameOverDiv)
-      restartButton.addEventListener('click', function(){
-        window.location.reload()
-      })
+        body.prepend(gameOverDiv);
+      }
+      if (document.querySelector('.restart')) {
+        const restartButton = document.querySelector('.restart');
+        restartButton.addEventListener('click', function() {
+          window.location.reload()
+        });
+      }
     }
-  }
   }
 }
 

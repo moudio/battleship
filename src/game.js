@@ -16,13 +16,11 @@ function Game (){
           computer.updateBoard();
           player.updateBoard();
         } else {
-          computer.updateBoard();
-          player.updateBoard();
+
           if(player.gameEnvironment.all_ships_sunk()){
             player.gameEnvironment.game_over("Computer Wins!");
           } else {
             player.gameEnvironment.game_over("You win!");
-
           }
           clearInterval(game_loop);
         }

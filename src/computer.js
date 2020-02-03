@@ -24,7 +24,7 @@ function Computer() {
 
     printBoard: function() {
       const div = document.createElement('div');
-      div.classList.add('board', 'computer-board')
+      div.classList.add('board', 'computer-board');
       const container = document.querySelector('.container');
       const table = document.createElement('table');
       const computer_caption = document.createElement('caption');
@@ -105,9 +105,7 @@ function Computer() {
             }
           }
         }
-        // } else if (cell.className.match(/miss/g)) {
-        //
-        // }
+
       });
 
 
@@ -157,7 +155,15 @@ function Computer() {
         }
 
         if (e.target.classList.contains('hit') || e.target.classList.contains('miss')) {
-          alert("you can't play twice");
+          const alertDiv = document.createElement('div');
+          const body = document.querySelector('body');
+
+          alertDiv.innerHTML = `
+          <div class="alert alert-warning">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>You can't play this cell twice!</strong>
+          </div>`;
+          body.prepend(alertDiv);
           return
         }
 
