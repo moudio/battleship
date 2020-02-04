@@ -164,8 +164,15 @@ function Computer() {
           <strong>You can't play this cell twice!</strong>
           </div>`;
           body.prepend(alertDiv);
-          return
-        }
+          setTimeout(function(){
+          const alert =  document.querySelector('.alert');
+          alert.style.display = 'none'
+
+        }, 2000);
+        return
+
+}
+
 
         if (!document.querySelector('.turn')) {
           const turn_span = document.createElement('span');

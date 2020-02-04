@@ -61,11 +61,7 @@ function Gameboard(player = null) {
           if(this.board[row_x]){
 
           if (i === y) {
-            // if (this.board[row_x - 1][i - 2] && !this.board[row_x - 1][i - 2].match(/blank/g)) {
-            //   this.board[row_x - 1][i - 2] += "-blank";
-            //
-            // }
-
+      
             if (this.board[row_x][i - 2] && !this.board[row_x][i - 2].match(/blank/g)) {
               this.board[row_x][i - 2] += "-blank";
             }
@@ -75,9 +71,6 @@ function Gameboard(player = null) {
 
           if(max_length - y > 3){
           if (i === max_length - 1) {
-            // if(this.board[row_x -1][i] && !this.board[row_x -1][i].match(/blank/g)){
-            //   this.board[row_x -1][i] += "-blank";
-            // }
 
             if (this.board[row_x][i] && !this.board[row_x][i].match(/blank/g)) {
               this.board[row_x][i] += "-blank";
@@ -91,21 +84,7 @@ function Gameboard(player = null) {
             if (!this.board[row_x + 1][i - 1].match(/blank/g)) {
               this.board[row_x + 1][i - 1] += "-blank";
             }
-            // this.board[row_x + 1][i - 1] = this.board[row_x + 1][i - 1].split('-').join('');
 
-
-            // if (i === y) {
-            //   //
-            //   // if (this.board[row_x + 1][i - 2] && !this.board[row_x + 1][i - 2].match(/blank/g)) {
-            //   //   this.board[row_x + 1][i - 2] += "-blank";
-            //   // }
-            // }
-
-            // if(i == max_length -1){
-            //   if(this.board[row_x + 1][i] && !this.board[row_x+1][i].match(/blank/g)){
-            //       this.board[row_x+ 1][i] += "-blank";
-            //     }
-            // }
           }
           ship.ship_coordonates.push(`${x}${i}`);
         }
@@ -140,7 +119,11 @@ function Gameboard(player = null) {
     receiveAttack: function(x, y) {
       const row_x = this.letterToNum[x];
       let hit_coordonate = this.board[row_x][y - 1].split('_');
-      if (hit_coordonate[0] === 'ship') {
+
+      if(this.board[row_x][y-1] === 'hit' || this.board[row_x][y-1] === 'miss'){
+        return;
+      } else {
+      if (/ship/g.test(hit_coordonate[0])) {
         this.board[row_x][y - 1] = 'hit';
         const ship_number = hit_coordonate[1];
         const hit_ship = this.ships[ship_number];
@@ -149,6 +132,8 @@ function Gameboard(player = null) {
       } else {
         this.board[row_x][y - 1] = 'miss';
       }
+    }
+
     },
 
     attack: function(x, y) {

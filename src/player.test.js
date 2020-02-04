@@ -7,6 +7,7 @@ const player = Player();
 const computer = Computer();
 const game = Game();
 computer.placeShip(3, 'A', 1);
+
 game.attack(computer, 'A', 2);
 expect(computer.gameEnvironment.board).toEqual([
   ["ship-0", "hit", "ship-0", "A4", "A5", "A6", "A7", "A8", "A9", "A10"],

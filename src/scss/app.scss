@@ -39,9 +39,6 @@ td {
 
 }
 
-.computer-ship {
-  background: yellow;
-}
 
 .hit {
   background: #A9CEF4;
@@ -95,4 +92,11 @@ td {
 .table-caption {
   font-size: 30px;
   padding: 20px;
+}
+
+.alert {
+  text-align: center;
+  font-size: 20px;
+  width: 50%;
+  margin: 0px auto;
 }
