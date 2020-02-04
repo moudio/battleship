@@ -125,14 +125,12 @@ function Gameboard(player = null) {
         const ship_number = hit_coordonate[1];
         const hit_ship = this.ships[ship_number];
         const indexHit = hit_ship.ship_coordonates.indexOf(`${x}${y}`);
-        // hit_ship.ship_coordonates[indexHit] = 'hit';
         hit_ship.places[indexHit] = 'hit';
 
       } else {
         this.board[row_x][y - 1] = 'miss';
       }
     }
-console.log(this.ships)
     },
 
     attack: function(x, y) {
@@ -144,7 +142,7 @@ console.log(this.ships)
     all_ships_sunk: function() {
       return this.ships.every(ship => ship.isSunk() === true);
 
-    },
+    }, 
 
 
 
