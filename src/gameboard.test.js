@@ -99,7 +99,7 @@ test('it checks if all the ships are sunk when all hit', () => {
   gameboard.receiveAttack('C', 8);
   gameboard.receiveAttack('J', 3)
   gameboard.receiveAttack('J', 4);
-  console.log("ships", gameboard.ships);
+   ("ships", gameboard.ships);
   expect(gameboard.all_ships_sunk()).toBe(true);
 
 });

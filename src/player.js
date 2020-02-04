@@ -26,7 +26,7 @@ function Player()  {
       container.appendChild(div)
 
       const board = this.gameEnvironment.board;
-        board.forEach((row, index) => {
+        board.forEach((row) => {
           let allTbodies = document.querySelectorAll('tbody');
           let tbody = allTbodies[allTbodies.length -1];
           let table_row = document.createElement('tr');
@@ -78,8 +78,6 @@ for(let i = 0 ; i < ship.ship_coordonates.length; i++){
 
   }
 }
-  } else if (cell.className.match(/miss/g)) {
-
   }
 });
     },
@@ -169,8 +167,6 @@ for(let i = 0 ; i < ship.ship_coordonates.length; i++){
         return true;
       }
     }
-
-
 
 
   }

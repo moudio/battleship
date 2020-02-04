@@ -28,7 +28,7 @@ function Game (){
 
 }
 }
-};
+}
 
 
 

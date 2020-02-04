@@ -2,9 +2,8 @@
 
   return {
   length,
-   places : new Array(length).fill('not hit'),
+  places : new Array(length).fill('not hit'),
   state: 'not-sunk',
-
   hit: function(n){
     this.places[n-1] = 'hit'
   },
@@ -17,8 +16,6 @@
     } else {
       return false;
     }
-
-
   },
 ship_coordonates: []
 

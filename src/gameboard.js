@@ -24,7 +24,6 @@ function Gameboard(player = null) {
 
     board: (function() {
       const board = [];
-      const number = 0;
       let board_row = [];
       let row = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
       let col = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
@@ -61,11 +60,10 @@ function Gameboard(player = null) {
           if(this.board[row_x]){
 
           if (i === y) {
-      
+
             if (this.board[row_x][i - 2] && !this.board[row_x][i - 2].match(/blank/g)) {
               this.board[row_x][i - 2] += "-blank";
             }
-
 
           }
 
@@ -78,7 +76,6 @@ function Gameboard(player = null) {
           }
         }
 }
-
 
           if (this.board[row_x + 1]) {
             if (!this.board[row_x + 1][i - 1].match(/blank/g)) {
@@ -128,12 +125,14 @@ function Gameboard(player = null) {
         const ship_number = hit_coordonate[1];
         const hit_ship = this.ships[ship_number];
         const indexHit = hit_ship.ship_coordonates.indexOf(`${x}${y}`);
-        hit_ship.ship_coordonates[indexHit] = 'hit'
+        // hit_ship.ship_coordonates[indexHit] = 'hit';
+        hit_ship.places[indexHit] = 'hit';
+
       } else {
         this.board[row_x][y - 1] = 'miss';
       }
     }
-
+console.log(this.ships)
     },
 
     attack: function(x, y) {
@@ -143,7 +142,8 @@ function Gameboard(player = null) {
     },
 
     all_ships_sunk: function() {
-      return this.ships.every(ship => ship.isSunk() === true)
+      return this.ships.every(ship => ship.isSunk() === true);
+
     },
 
 
@@ -151,7 +151,6 @@ function Gameboard(player = null) {
     game_over: function(message) {
       if (!document.querySelector('.restart')) {
         const body = document.querySelector('body')
-        const container = document.querySelector('body');
         const gameOverDiv = document.createElement('div');
         gameOverDiv.innerHTML = `<div class="card text-center">
   <div class="card-header">
