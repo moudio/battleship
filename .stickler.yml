@@ -5,8 +5,4 @@ linters:
     csslint:
 fixers:
     enable: true
-  files:
-    ignore:
-        - 'src/generated/*'
-        - 'webroot/bower_components/*'
-        - 'node_modules/*'
+    
