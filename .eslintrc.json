@@ -16,6 +16,6 @@
     },
 
   "globals": {
-    "__" : false
+    "__dirname" : false
   }
 }
