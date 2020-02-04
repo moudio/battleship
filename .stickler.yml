@@ -1,0 +1,7 @@
+linters:
+    flake8:
+    eslint:
+        config: './eslintrc.json'
+    csslint:
+fixers:
+    enable: true
