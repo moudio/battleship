@@ -1,4 +1,4 @@
-const Ship = require('./ship');
+import Ship from './ship';
 
 test('checks if the ship is created', () => {
   let newShip = Ship(3);

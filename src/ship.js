@@ -1,4 +1,4 @@
-function Ship(length) {
+export default function Ship(length) {
   return {
     length,
     places: new Array(length).fill('not hit'),
@@ -19,6 +19,3 @@ function Ship(length) {
 
   };
 }
-
-
-module.exports = Ship;

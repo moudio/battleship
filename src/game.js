@@ -1,7 +1,7 @@
-const Player = require('./player');
-const Computer = require('./computer');
+import Player from './player';
+import Computer from './computer';
 
-function Game() {
+export default function Game() {
   return {
 
     start() {
@@ -27,6 +27,3 @@ function Game() {
     },
   };
 }
-
-
-module.exports = Game;

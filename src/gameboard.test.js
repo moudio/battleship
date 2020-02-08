@@ -1,6 +1,5 @@
-const Gameboard = require('./gameboard');
-const Ship = require('./ship');
-
+import Gameboard from './gameboard';
+import Ship from './ship';
 test('it checks if gameboard can place the ship ', () => {
   const game = Gameboard();
   let newShip = Ship(1);

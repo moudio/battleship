@@ -1,6 +1,6 @@
-const Ship = require('./ship');
+import Ship from './ship';
 
-function Gameboard(player = null) {
+export default function Gameboard(player = null) {
   return {
     ships: [],
     moves: [],
@@ -103,10 +103,7 @@ function Gameboard(player = null) {
     receiveAttack(x, y) {
       const rowX = this.letterToNum[x];
       const hitCoordonate = this.board[rowX][y - 1].split('_');
-
-      if (this.board[rowX][y - 1] === 'hit' || this.board[rowX][y - 1] === 'miss') {
-
-      } else if (/ship/g.test(hitCoordonate[0])) {
+      if (/ship/g.test(hitCoordonate[0])) {
         this.board[rowX][y - 1] = 'hit';
         const shipNumber = hitCoordonate[1];
         const hitShip = this.ships[shipNumber];
@@ -153,6 +150,3 @@ function Gameboard(player = null) {
     },
   };
 }
-
-
-module.exports = Gameboard;

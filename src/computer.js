@@ -1,6 +1,6 @@
-const Gameboard = require('./gameboard');
+import Gameboard from './gameboard';
 
-function Computer() {
+export default function Computer() {
   return {
 
     randomMove() {
@@ -129,9 +129,8 @@ function Computer() {
         const gridClasses = e.target.className.split(' ');
         let shipCoord = gridClasses.find(el => el.match(/[A-Z]\d+/g));
         if (shipCoord.length > 3) {
-          shipCoord = shipCoord.split('-')[0];
+          [shipCoord] = shipCoord.split('-');
         }
-
         if (!document.querySelector('.player-move')) {
           const span = document.createElement('span');
           span.className = 'player-move';
@@ -230,6 +229,3 @@ function Computer() {
 
   };
 }
-
-
-module.exports = Computer;

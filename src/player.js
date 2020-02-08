@@ -1,6 +1,6 @@
-const Gameboard = require('./gameboard');
+import Gameboard from './gameboard';
 
-function Player() {
+export default function Player() {
   return {
     turn: false,
     gameEnvironment: Gameboard(),
@@ -155,6 +155,3 @@ function Player() {
 
   };
 }
-
-
-module.exports = Player;
