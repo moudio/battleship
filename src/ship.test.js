@@ -1,14 +1,15 @@
 const Ship = require('./ship');
-test('checks if the ship is created', ()=> {
+
+test('checks if the ship is created', () => {
   let newShip = Ship(3);
   expect(newShip.length).toBe(3);
-   newShip = Ship(6);
-  expect(newShip.length).toBe(6)
+  newShip = Ship(6);
+  expect(newShip.length).toBe(6);
 });
 
-test('check for the ships coordonates', ()=> {
+test('check for the ships coordonates', () => {
   const newShip = Ship(3);
-  expect(newShip.places).toEqual(['not hit', 'not hit', 'not hit'])
+  expect(newShip.places).toEqual(['not hit', 'not hit', 'not hit']);
 });
 
 
@@ -25,4 +26,4 @@ test('check if the ship is sunk or not', () => {
   newShip.hit(3);
   expect(newShip.isSunk()).toBe(true);
   expect(newShip.state).toBe('sunk');
-})
+});

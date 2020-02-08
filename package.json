@@ -1,28 +1,20 @@
 {
-  "name": "battleship_js",
+  "name": "Battleship_JS",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "build": "webpack --watch",
-    "test": "jest"
+  "description": "Battleship is a strategy type guessing game for two players.",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1",
+    "lodash": "^4.17.15",
+    "popper.js": "^1.16.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MouhaDiouf/Battleship_JS.git",
-    "eslint": "eslint --ignore-pattern '!node_modules/*'"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MouhaDiouf/Battleship_JS/issues"
-  },
-  "homepage": "https://github.com/MouhaDiouf/Battleship_JS#readme",
   "devDependencies": {
     "autoprefixer": "^9.7.4",
     "css-loader": "^3.4.2",
     "eslint": "^6.8.0",
-    "exports-loader": "^0.7.0",
-    "jest": "^24.9.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
     "node-sass": "^4.13.1",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^8.0.2",
@@ -30,11 +22,18 @@
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },
-  "dependencies": {
-    "bootstrap": "^4.4.1",
-    "jquery": "^3.4.1",
-    "popper.js": "^1.16.1"
+  "scripts": {
+    "build": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MouhaDiouf/Battleship_JS.git"
   },
   "keywords": [],
-  "description": ""
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MouhaDiouf/Battleship_JS/issues"
+  },
+  "homepage": "https://github.com/MouhaDiouf/Battleship_JS#readme"
 }
