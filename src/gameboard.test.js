@@ -1,5 +1,7 @@
+/* eslint-disable */
 import Gameboard from './gameboard';
 import Ship from './ship';
+
 test('it checks if gameboard can place the ship ', () => {
   const game = Gameboard();
   let newShip = Ship(1);
@@ -83,6 +85,7 @@ test('it checks if all the ships are not sunk when not all hit', () => {
 
   expect(gameboard.all_ships_sunk()).toBe(false);
 });
+
 test('it checks if all the ships are sunk when all hit', () => {
   const gameboard = Gameboard();
   const firstShip = Ship(3);
