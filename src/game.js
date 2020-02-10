@@ -17,10 +17,8 @@ export default function Game() {
       } else {
         if (player.gameEnvironment.allShipsSunk()) {
           dom.gameOver('Computer Wins!');
-
         } else {
           dom.gameOver('You win!');
-
         }
         clearInterval(gameLoop);
       }
