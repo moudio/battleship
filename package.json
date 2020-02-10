@@ -9,7 +9,6 @@
     "lodash": "^4.17.15",
     "popper.js": "^1.16.1"
   },
-  "eslintIgnore": ["*.test.js"],
   "devDependencies": {
     "autoprefixer": "^9.7.4",
     "css-loader": "^3.4.2",
