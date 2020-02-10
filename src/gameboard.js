@@ -20,7 +20,7 @@ export default function Gameboard(player = null) {
     return newShip;
   }
 
-  const boardFunc = function () {
+  function boardFunc() {
     const board = [];
     let boardRow = [];
     const row = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
