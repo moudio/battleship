@@ -20,7 +20,7 @@ export default function Gameboard(player = null) {
     return newShip;
   }
 
-  const board = (function () {
+  const boardFunc = function () {
     const board = [];
     let boardRow = [];
     const row = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
@@ -35,7 +35,9 @@ export default function Gameboard(player = null) {
       }
     }
     return board;
-  }());
+  }
+
+  const board = boardFunc();
 
   function placeShip(ship, x, y) {
     const rowX = this.letterToNum[x];
@@ -92,8 +94,8 @@ export default function Gameboard(player = null) {
           }
 
           if (i === maxLength - 1) {
-            if (this.board[rowX][i-2] && !this.board[rowX][i-2].match(/blank/g)) {
-              this.board[rowX][i-2] += '-blank';
+            if (this.board[rowX][i - 2] && !this.board[rowX][i - 2].match(/blank/g)) {
+              this.board[rowX][i - 2] += '-blank';
             }
           }
         }

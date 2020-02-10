@@ -25,7 +25,8 @@ module.exports = {
             options: {
               plugins() {
                 return [
-                  require('autoprefixer'), // eslint-disable-line global-require
+                  /* eslint-disable */
+                  require('autoprefixer'), 
                 ];
               },
             },
