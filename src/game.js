@@ -1,29 +1,30 @@
 import Player from './player';
 import Computer from './computer';
+import Dom from './dom';
 
 export default function Game() {
-  return {
-
-    start() {
-      const player = Player();
-      const computer = Computer();
-      player.placeRandomShips();
-      computer.placeRandomShips();
-
-      const gameLoop = setInterval(() => {
-        if (!player.gameEnvironment.all_ships_sunk()
-        && !computer.gameEnvironment.all_ships_sunk()) {
-          computer.updateBoard();
-          player.updateBoard();
+  function start() {
+    const player = Player();
+    const computer = Computer();
+    const dom = Dom();
+    dom.placeRandomShips(player);
+    dom.placeRandomShips(computer);
+    const gameLoop = setInterval(() => {
+      if (!player.gameEnvironment.allShipsSunk()
+      && !computer.gameEnvironment.allShipsSunk()) {
+        dom.updatePlayerBoard(player);
+        dom.updateComputerBoard(computer);
+      } else {
+        if (player.gameEnvironment.allShipsSunk()) {
+          dom.gameOver('Computer Wins!');
         } else {
-          if (player.gameEnvironment.all_ships_sunk()) {
-            player.gameEnvironment.game_over('Computer Wins!');
-          } else {
-            player.gameEnvironment.game_over('You win!');
-          }
-          clearInterval(gameLoop);
+          dom.gameOver('You win!');
         }
-      }, 300);
-    },
+        clearInterval(gameLoop);
+      }
+    }, 300);
+  }
+  return {
+    start,
   };
 }
