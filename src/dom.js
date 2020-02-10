@@ -274,6 +274,7 @@ export default function Dom() {
       gameOverDiv.classList.add('game-over-div');
 
       body.prepend(gameOverDiv);
+      document.querySelector('.computer-board').removeEventListener('click', updateComputerCell);
     }
     if (document.querySelector('.restart')) {
       const restartButton = document.querySelector('.restart');

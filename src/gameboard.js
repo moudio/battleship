@@ -84,6 +84,20 @@ export default function Gameboard(player = null) {
           }
         }
 
+        if (this.board[rowX]) {
+          if (i === y) {
+            if (this.board[rowX][i] && !this.board[rowX][i].match(/blank/g)) {
+              this.board[rowX][i] += '-blank';
+            }
+          }
+
+          if (i === maxLength - 1) {
+            if (this.board[rowX][i-2] && !this.board[rowX][i-2].match(/blank/g)) {
+              this.board[rowX][i-2] += '-blank';
+            }
+          }
+        }
+
         if (this.board[rowX + 1]) {
           if (!this.board[rowX + 1][i - 1].match(/blank/g)) this.board[rowX + 1][i - 1] += '-blank';
         }
