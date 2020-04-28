@@ -20,6 +20,8 @@ Play against a computer with two boards.
 Mouhamadou Diouf ( <a href="https://github.com/MouhaDiouf"> @mouhad </a>)
 Michael Damulak ( <a href="https://github.com/em-em-D"> @em-em-D </a>)
 
+## Live Version
+Live version can be found here: <a href="https://mouhadiouf.github.io/Battleship_JS/dist/"> Battleship Game </a>
 
 ## Contributing
 
