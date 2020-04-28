@@ -18,7 +18,7 @@ export default function Dom() {
   function updateComputerCell(e) {
     if (e.target.tagName.toLowerCase() === 'td') {
       const gridClasses = e.target.className.split(' ');
-      let shipCoord = gridClasses.find(el => el.match(/[A-Z]\d+/g));
+      let shipCoord = gridClasses.find((el) => el.match(/[A-Z]\d+/g));
       if (shipCoord.length > 3) {
         [shipCoord] = shipCoord.split('-');
       }
@@ -33,7 +33,10 @@ export default function Dom() {
         span.innerHTML = shipCoord;
       }
 
-      if (e.target.classList.contains('hit') || e.target.classList.contains('miss')) {
+      if (
+        e.target.classList.contains('hit') ||
+        e.target.classList.contains('miss')
+      ) {
         alert("You can't play this cell twice!");
         return;
       }
@@ -62,7 +65,8 @@ export default function Dom() {
     } else if (type === 'computer') {
       boardCells = Array.from(document.querySelectorAll('.computer-board td'));
     }
-    const indexLetter = currentPlayer.gameEnvironment.letterToNum[ship.ship_coordonates[0][0]];
+    const indexLetter =
+      currentPlayer.gameEnvironment.letterToNum[ship.ship_coordonates[0][0]];
     const letterNum = Number(ship.ship_coordonates[0].match(/\d+/g)[0]);
     let indexToStart = indexLetter * 10 + letterNum - 1;
     let i = 0;
@@ -88,14 +92,16 @@ export default function Dom() {
     const computerCaption = document.createElement('caption');
     computerCaption.className = 'table-caption';
     table.appendChild(computerCaption);
-    computerCaption.innerHTML = 'Computer board';
+    if (p.type === 'computer') {
+      computerCaption.innerHTML = 'Computer board';
+    } else {
+      computerCaption.innerHTML = 'Player board';
+    }
     table.innerHTML += '<tbody> </tbody>';
     div.appendChild(table);
     container.appendChild(div);
 
-    const {
-      board,
-    } = p.gameEnvironment;
+    const { board } = p.gameEnvironment;
     board.forEach((row) => {
       const allTbodies = document.querySelectorAll('tbody');
       const tbody = allTbodies[allTbodies.length - 1];
@@ -119,10 +125,11 @@ export default function Dom() {
       tbody.appendChild(tableRow);
     });
     if (p.type === 'computer') {
-      document.querySelector('.computer-board').addEventListener('click', updateComputerCell);
+      document
+        .querySelector('.computer-board')
+        .addEventListener('click', updateComputerCell);
     }
   }
-
   function updatePlayerCell(tdClass) {
     let tdTarget = document.querySelector(`.player-board .${tdClass}`);
     if (tdTarget === null) {
@@ -144,9 +151,11 @@ export default function Dom() {
       player.gameEnvironment.receiveAttack(attackLetter, attackNumber);
       updatePlayerCell(spanCoordonates);
     }
-    const boardCells = Array.from(document.querySelectorAll('.player-board td'));
+    const boardCells = Array.from(
+      document.querySelectorAll('.player-board td')
+    );
 
-    boardCells.forEach(cell => {
+    boardCells.forEach((cell) => {
       if (cell.className.match(/hit/g)) {
         const cellClassNames = cell.className;
         const shipName = cellClassNames.match(/ship_\d+/)[0];
@@ -185,14 +194,20 @@ export default function Dom() {
         }
 
         turnSpan.innerHTML = 'Player';
-        document.querySelector('.computer-board').removeEventListener('click', updateComputerCell);
+        document
+          .querySelector('.computer-board')
+          .removeEventListener('click', updateComputerCell);
       } else {
-        document.querySelector('.computer-board').addEventListener('click', updateComputerCell);
+        document
+          .querySelector('.computer-board')
+          .addEventListener('click', updateComputerCell);
       }
     }
-    const boardCells = Array.from(document.querySelectorAll('.computer-board td'));
+    const boardCells = Array.from(
+      document.querySelectorAll('.computer-board td')
+    );
 
-    boardCells.forEach(cell => {
+    boardCells.forEach((cell) => {
       if (cell.className.match(/hit/g)) {
         const cellClassNames = cell.className;
         const shipName = cellClassNames.match(/ship_\d+/)[0];
@@ -212,7 +227,9 @@ export default function Dom() {
   }
 
   function randomPlace() {
-    const randomLetter = String.fromCharCode(65 + Math.round(Math.random() * 9));
+    const randomLetter = String.fromCharCode(
+      65 + Math.round(Math.random() * 9)
+    );
     const randomNumber = Math.ceil(Math.random() * 10);
     const result = [randomLetter, randomNumber];
     return result;
@@ -222,11 +239,13 @@ export default function Dom() {
     const playerGameboard = p.gameEnvironment.board;
     const rowXIndex = p.gameEnvironment.letterToNum[letter];
     const rowX = playerGameboard[rowXIndex];
-    if ((position + shipLength) <= 10) {
+    if (position + shipLength <= 10) {
       let realShipLength = position + shipLength - 1;
       while (realShipLength > position - 1) {
-        if (rowX[realShipLength - 1].match(/blank/)
-          || rowX[realShipLength - 1].match(/ship/)) {
+        if (
+          rowX[realShipLength - 1].match(/blank/) ||
+          rowX[realShipLength - 1].match(/ship/)
+        ) {
           return false;
         }
         realShipLength -= 1;
@@ -235,8 +254,10 @@ export default function Dom() {
     }
     const shipEndPosition = position - shipLength - 1;
     while (position - 1 > shipEndPosition) {
-      if (rowX[position - 1].match(/blank/)
-        || rowX[position - 1].match(/ship/)) {
+      if (
+        rowX[position - 1].match(/blank/) ||
+        rowX[position - 1].match(/ship/)
+      ) {
         return false;
       }
       position -= 1;
@@ -247,9 +268,11 @@ export default function Dom() {
 
   function placeRandomShips(p) {
     const shipsLengths = [1, 1, 2, 2, 2, 3, 3, 4];
-    shipsLengths.forEach(shipsLength => {
+    shipsLengths.forEach((shipsLength) => {
       let randomPosition = randomPlace();
-      while (!validPosition(p, shipsLength, randomPosition[0], randomPosition[1])) {
+      while (
+        !validPosition(p, shipsLength, randomPosition[0], randomPosition[1])
+      ) {
         randomPosition = randomPlace();
       }
 
@@ -274,7 +297,9 @@ export default function Dom() {
       gameOverDiv.classList.add('game-over-div');
 
       body.prepend(gameOverDiv);
-      document.querySelector('.computer-board').removeEventListener('click', updateComputerCell);
+      document
+        .querySelector('.computer-board')
+        .removeEventListener('click', updateComputerCell);
     }
     if (document.querySelector('.restart')) {
       const restartButton = document.querySelector('.restart');
@@ -289,6 +314,5 @@ export default function Dom() {
     updateComputerBoard,
     placeRandomShips,
     gameOver,
-
   };
 }
