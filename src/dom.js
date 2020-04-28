@@ -34,8 +34,8 @@ export default function Dom() {
       }
 
       if (
-        e.target.classList.contains('hit') ||
-        e.target.classList.contains('miss')
+        e.target.classList.contains('hit')
+        || e.target.classList.contains('miss')
       ) {
         alert("You can't play this cell twice!");
         return;
@@ -65,8 +65,7 @@ export default function Dom() {
     } else if (type === 'computer') {
       boardCells = Array.from(document.querySelectorAll('.computer-board td'));
     }
-    const indexLetter =
-      currentPlayer.gameEnvironment.letterToNum[ship.ship_coordonates[0][0]];
+    const indexLetter = currentPlayer.gameEnvironment.letterToNum[ship.ship_coordonates[0][0]];
     const letterNum = Number(ship.ship_coordonates[0].match(/\d+/g)[0]);
     let indexToStart = indexLetter * 10 + letterNum - 1;
     let i = 0;
@@ -152,7 +151,7 @@ export default function Dom() {
       updatePlayerCell(spanCoordonates);
     }
     const boardCells = Array.from(
-      document.querySelectorAll('.player-board td')
+      document.querySelectorAll('.player-board td'),
     );
 
     boardCells.forEach((cell) => {
@@ -204,7 +203,7 @@ export default function Dom() {
       }
     }
     const boardCells = Array.from(
-      document.querySelectorAll('.computer-board td')
+      document.querySelectorAll('.computer-board td'),
     );
 
     boardCells.forEach((cell) => {
@@ -228,7 +227,7 @@ export default function Dom() {
 
   function randomPlace() {
     const randomLetter = String.fromCharCode(
-      65 + Math.round(Math.random() * 9)
+      65 + Math.round(Math.random() * 9),
     );
     const randomNumber = Math.ceil(Math.random() * 10);
     const result = [randomLetter, randomNumber];
@@ -243,8 +242,8 @@ export default function Dom() {
       let realShipLength = position + shipLength - 1;
       while (realShipLength > position - 1) {
         if (
-          rowX[realShipLength - 1].match(/blank/) ||
-          rowX[realShipLength - 1].match(/ship/)
+          rowX[realShipLength - 1].match(/blank/)
+          || rowX[realShipLength - 1].match(/ship/)
         ) {
           return false;
         }
@@ -255,8 +254,8 @@ export default function Dom() {
     const shipEndPosition = position - shipLength - 1;
     while (position - 1 > shipEndPosition) {
       if (
-        rowX[position - 1].match(/blank/) ||
-        rowX[position - 1].match(/ship/)
+        rowX[position - 1].match(/blank/)
+        || rowX[position - 1].match(/ship/)
       ) {
         return false;
       }
