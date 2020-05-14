@@ -1,4 +1,4 @@
-# Battleship_JS
+# Battleship Game
 
 ## Technologies
 
