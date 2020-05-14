@@ -15,6 +15,9 @@ Can be found on: ( <a href="https://www.theodinproject.com/courses/javascript/le
 
 ## Users Can: 
 Play against a computer with two boards.
+
+![screenshot](./app/assets/images/app_screenshot.png)
+
 ## Developed by
 
 Mouhamadou Diouf ( <a href="https://github.com/MouhaDiouf"> @mouhad </a>)
