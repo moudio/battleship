@@ -24,11 +24,11 @@ Mouhamadou Diouf ( <a href="https://github.com/MouhaDiouf"> @mouhad </a>)
 Michael Damulak ( <a href="https://github.com/em-em-D"> @em-em-D </a>)
 
 ## How to start the game
-1. Clone it (git clone git@github.com:MouhaDiouf/Battleship_JS.git)
+1. Clone it (git clone git@github.com:MouhaDiouf/battleship.git)
 2. Excecute it with a live server (from your code editor)
 
 ## Live Version
-Live version can be found here: <a href="https://mouhadiouf.github.io/Battleship_JS/dist/"> Battleship Game </a>
+Live version can be found here: <a href="https://mouhadiouf.github.io/battleship/dist/"> Battleship Game </a>
 
 ## Contributing
 
